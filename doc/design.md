@@ -1,0 +1,7 @@
+## Image collection
+The image collection process will be a constantly running process that will collect images from Caltrans and send them to the object detection program. I can use caltrans current image csv files although they come in as 320 x 260 jpg files. I would like to be able to extend this to using the m3u8 streaming service provided as I could in theory get 853 x 480 jpg files. This change would give me 5 times the clarity when detecting cars.
+## Object detection
+This will be a function that will run object recognition on jpg files passed from the image collection program. It should recognize vehicles only and store all the object information in a file for database storage. Two two main options of pre trained models that I can use with ImageAI are RetinaNet and YOLOv3, both are trained on the COCO dataset and can recognize 80 different objects. YOLOv3 will be best if I am able to access a video stream rather than just images every minute as it can run on live streams. Current testing shows RetinaNet as running twice as fast, so I will be using this for now.
+## Databasstorage
+I have two options for storing the data collected, either use an AWS hosted SQL database, or use an S3 bucket with JSON files. I am going to attempt to do the SQL database as it will provide me more applicable experience. My fallback plan will be to use the S3 bucket with JSON files, as I already know that I can do this.
+## Visualization
