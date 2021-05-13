@@ -1,0 +1,2 @@
+## Summary
+For this project I wanted to familiarize myself with machine learning and image visualization techniques. I am using free open data from CalTrans as my input, specifically I am accessing the camera on Highway 50 near Folsom Blvd. I am then processesing this image, which is updated every minute, using a pre-trained RetinaNet model that I have selected to recognize only cars and trucks. This data is timestamped and saved to a csv file. Then I use this csv file to 
