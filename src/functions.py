@@ -2,6 +2,7 @@ import os
 import io
 import uuid
 import csv
+import random
 from imageai.Detection import ObjectDetection
 from urllib.request import urlopen
 from vardata import camera_urls, resnet_model_path, minimum_probibility, custom_objects, download_path
@@ -89,8 +90,14 @@ def process_image(detector, jpg_path):
         output_image_path=new_file_path, minimum_percentage_probability=minimum_probibility
     )
     os.remove(jpg_path)
-    os.remove(new_file_path)
+    remove_image(new_file_path)
     return detections
+
+def remove_image(jpg_path):
+    if (random.uniform(0,100) < 1):
+        pass
+    else:
+        os.remove(jpg_path)
 
 def write_objects_to_file(filename, objects, time):
     cars = 0
