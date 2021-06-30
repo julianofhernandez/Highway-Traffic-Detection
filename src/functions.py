@@ -3,11 +3,14 @@ import io
 import uuid
 import csv
 import random
+import logging
 from imageai.Detection import ObjectDetection
 from urllib.request import urlopen
 from vardata import camera_urls, resnet_model_path, minimum_probibility, custom_objects, download_path
 
 os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
+
+# logging.basicConfig(filename='tmp\example.log', encoding='utf-8', level=logging.DEBUG)
 
 def get_m3u8_urls():
     '''Gets a list of the m3u8 urls from the CalTrans district 3 csv'''
@@ -89,8 +92,8 @@ def process_image(detector, jpg_path):
         input_image=jpg_path, 
         output_image_path=new_file_path, minimum_percentage_probability=minimum_probibility
     )
+    # remove_image(new_file_path)
     os.remove(jpg_path)
-    remove_image(new_file_path)
     return detections
 
 def remove_image(jpg_path):
@@ -109,6 +112,6 @@ def write_objects_to_file(filename, objects, time):
         if (object['name'] == 'truck'):
             trucks += 1
 
-    with open(filename, "a") as f:
+    with open(filename, "w", newline='') as f:
         writer = csv.writer(f)
         writer.writerow([time, cars, trucks])

@@ -1,4 +1,5 @@
 import time, sched
+import sys
 from functions import *
 from vardata import camera_urls, resnet_model_path, minimum_probibility, custom_objects, download_path
 
@@ -10,10 +11,12 @@ jpg_list = get_jpg_list()
 
 def run_every_minute():
     s.enter(60, 1, run_every_minute, ())
-    jpg_path = download_jpg(jpg_list[124])
+    # jpg_path = download_jpg(jpg_list[124])
+    jpg_path = download_jpg(jpg_list[44])
     objects = process_image(det, jpg_path)
     write_objects_to_file("savefile.csv", objects, time.time())
     print(objects)
+    print(sys.stdin.readlines())
 
 s = sched.scheduler(time.time, time.sleep)
 
