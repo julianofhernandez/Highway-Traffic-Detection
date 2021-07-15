@@ -30,7 +30,7 @@ The images captured by
 
 These images were processed using a ```minimum_probibility = 15``` as seen in /src/vardata.py.
 
-Here is an plot that shows detected vehicles over the course of a day
+Here is an plot that shows detected vehicles over the course of a day. We do see a large increase during the morning commute time, however, this may be due to the issue described below.
 
 ![processed_image](doc/photos/graph.png)
 

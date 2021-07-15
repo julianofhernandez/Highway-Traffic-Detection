@@ -156,6 +156,5 @@ def create_plot(filename):
         str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(times[-1]))))
     plt.ylabel("Cars")
     plt.xticks([])
-    plt.plot(times, cars, label="Cars per hour")
-    plt.legend()
+    plt.plot(times, cars, label="Cars per minute")
     fig.savefig(filename)
