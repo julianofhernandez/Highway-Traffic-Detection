@@ -35,6 +35,6 @@ Here is an plot that shows detected vehicles over the course of a day
 ![processed_image](doc/photos/graph.png)
 
 ## Problems
-Recognizing vehicles at night, while it can be done, does seem to be returning inconsistant results.
+Recognizing vehicles at night, while it can be done, does seem to be returning inconsistant results. A great fix for this would be to train a custom model to look for moving lights, which since these cameras are limited to highways finding moving lights may be fairly accurate to determine whether a car is present.
 
 ![night time](doc/photos/night.jpg)
