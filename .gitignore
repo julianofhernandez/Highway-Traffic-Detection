@@ -1,6 +1,7 @@
 # Specific to this project
-tmp/*
+tmp/
 savefile.csv
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

@@ -10,3 +10,4 @@ minimum_probibility = 15
 custom_objects = ObjectDetection().CustomObjects(
     car = True, truck=True,
 )
+save_file = 'savefile.csv'

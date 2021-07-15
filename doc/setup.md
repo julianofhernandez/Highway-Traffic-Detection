@@ -13,5 +13,10 @@ Download [resnet](https://github.com/OlafenwaMoses/ImageAI/releases/download/ess
 
 ## Execute
 ```
-python .\run_script.py
+python .\run_script.py run
+```
+
+## Plot results
+```
+python .\run_script.py print
 ```

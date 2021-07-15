@@ -4,11 +4,15 @@ import uuid
 import csv
 import random
 import logging
+import time
 from imageai.Detection import ObjectDetection
 from urllib.request import urlopen
-from vardata import camera_urls, resnet_model_path, minimum_probibility, custom_objects, download_path
+import matplotlib.pyplot as plt
+import numpy as np
+from vardata import camera_urls, resnet_model_path, \
+minimum_probibility, custom_objects, download_path, save_file
 
-os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
+
 
 # logging.basicConfig(filename='tmp\example.log', encoding='utf-8', level=logging.DEBUG)
 
@@ -102,7 +106,8 @@ def remove_image(jpg_path):
     else:
         os.remove(jpg_path)
 
-def write_objects_to_file(filename, objects, time):
+def write_objects_to_file(objects, time):
+    filename = save_file
     cars = 0
     trucks = 0
     for object in objects:
@@ -112,6 +117,45 @@ def write_objects_to_file(filename, objects, time):
         if (object['name'] == 'truck'):
             trucks += 1
 
-    with open(filename, "w", newline='') as f:
-        writer = csv.writer(f)
-        writer.writerow([time, cars, trucks])
+    if os.path.exists(filename):
+        with open(filename, "a", newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([time, cars, trucks])
+    else:
+        with open(filename, "w", newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow([time, cars, trucks])
+
+def create_plot(filename):
+    times, cars, trucks = [], [], []
+
+    if os.path.exists(filename):
+        os.remove(filename)
+
+    print('Making plot')
+    if os.path.exists(save_file):
+        with open(save_file, 'r', newline='') as f:
+            reader = csv.reader(f)
+            for line in reader:
+                times.append(float(line[0]))
+                cars.append(int(line[1]))
+                trucks.append(int(line[2]))
+        print(times)
+        print(cars)
+        print(trucks)
+    else:
+        print('No savefile.csv to plot')
+
+    fig = plt.figure()
+    # Setup labels
+    plt.title("Cars per minute")
+    plt.xlabel(
+        "From: " + 
+        str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(times[0]))) + 
+        "\nTo: " + 
+        str(time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(times[-1]))))
+    plt.ylabel("Cars")
+    plt.xticks([])
+    plt.plot(times, cars, label="Cars per hour")
+    plt.legend()
+    fig.savefig(filename)
