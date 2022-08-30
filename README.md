@@ -17,7 +17,7 @@ https://imageai.readthedocs.io/en/latest/video/index.html
 [My SQL tutorial](https://aws.amazon.com/getting-started/hands-on/create-microsoft-sql-db/)
 
 ## Outcomes
-The images from CalTrans are collected once a minute and are 320 x 260. This is the largest bottleneck to the project going forward, although there may be solutions that need further development. These images and then processed by a pretrained Resnet model as seen below.
+The images from CalTrans are collected once a minute and are 320 x 260. This is the largest bottleneck to the project going forward, although there may be solutions that need further investigation. These images are then processed by a pretrained Resnet model as seen below.
 
 ### Unprocessed:
 
